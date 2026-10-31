@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Ночь. Расставь всё</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== ЭКРАН ВЫБОРА ИГРОКА ========== -->
+  <div id="loginModal" class="modal-overlay active">
+    <div class="modal-window">
+      <div class="modal-title">КТО ТЫ?</div>
+      <div class="modal-desc">Выбери своего игрока</div>
+      <div class="player-grid">
+        <button class="modal-btn player-pick" data-id="1">1</button>
+        <button class="modal-btn player-pick" data-id="2">2</button>
+        <button class="modal-btn player-pick" data-id="3">3</button>
+        <button class="modal-btn player-pick" data-id="4">4</button>
+        <button class="modal-btn player-pick" data-id="5">5</button>
+        <button class="modal-btn player-pick" data-id="6">6</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ИГРОВОЙ ЭКРАН ========== -->
+  <div id="game" hidden>
+
+    <!-- HUD сверху -->
+    <div id="hud">
+      <div id="hud-title">ИГРОК <span id="hud-player">?</span></div>
+      <button id="finishBtn" class="hud-btn">ГОТОВО</button>
+    </div>
+
+    <!-- Сцена -->
+    <div id="field">
+      <div id="world">
+        <img id="bg" alt="">
+        <canvas id="drawCanvas"></canvas>
+        <div id="objectsLayer"></div>
+      </div>
+    </div>
+
+    <!-- Выезжающие панели настроек (над тулбаром) -->
+      <div id="brushSettings" class="settings-bar">
+
+
+      <!-- Выбор цвета -->
+      <div class="color-picker">
+        <button class="color-btn active" data-color="#4a0a0a" style="background:#4a0a0a;" title="Тёмный"></button>
+        <button class="color-btn" data-color="#6b0f0f" style="background:#6b0f0f;" title="Основной"></button>
+        <button class="color-btn" data-color="#9b1b1b" style="background:#9b1b1b;" title="Светлый"></button>
+      </div>
+
+      <input type="range" id="brushSize" min="2" max="40" value="8">
+      <span class="tool-label" id="brushSizeLabel">8</span>
+    </div>
+
+    <div id="sizeSettings" class="settings-bar">
+      <span class="tool-label">РАЗМЕР:</span>
+      <input type="range" id="itemSize" min="40" max="500" value="120">
+      <span class="tool-label" id="itemSizeLabel">120</span>
+    </div>
+
+    <!-- Панель инструментов снизу -->
+    <div id="toolbar">
+      <button id="undoBtn" class="tool action-btn" title="Отменить">ОТМЕНА</button>
+
+      <!-- Краска -->
+      <div class="tool" data-tool="brush" title="Краска">
+        <img src="assets/items/paint.png" alt="" onerror="this.style.display='none'">
+        <span class="tool-label">КРАСКА</span>
+      </div>
+
+      <!-- Перетаскиваемые -->
+      <div class="tool" data-tool="wine" title="Вино">
+        <img src="assets/items/wine.png" alt="">
+        <span class="tool-label">ВИНО</span>
+      </div>
+      <div class="tool" data-tool="pumpkin" title="Тыква">
+        <img src="assets/items/pumpkin.png" alt="">
+        <span class="tool-label">ТЫКВА</span>
+      </div>
+      <div class="tool" data-tool="candle" title="Свеча">
+        <img src="assets/items/candle.png" alt="">
+        <span class="tool-label">СВЕЧА</span>
+      </div>
+      <div class="tool player-tool" data-tool="player" title="Игрок">
+        <img id="playerToolIcon" src="" alt="">
+        <span class="tool-label">Я</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ПИКСЕЛЬНЫЙ ПОПАП ========== -->
+  <div id="tooltip">
+    <div class="tt-title" id="ttTitle">ЗАГОЛОВОК</div>
+    <div class="tt-desc" id="ttDesc">Описание</div>
+    <button class="tt-btn" id="ttBtn">ОК</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
